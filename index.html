@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Año Nuevo - Enlace Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #000000, #3e3e3e); /* Fondo negro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        .message {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffe23f; /* Dorado brillante */
+            margin-bottom: 20px;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra dorada para el texto */
+            animation: bounce 2s infinite alternate;
+            display: none; /* Ocultar el mensaje hasta que termine la cuenta regresiva */
+        }
+        .link-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+            border-radius: 20px;
+            padding: 30px;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 3s ease-out;
+            display: none; /* Ocultar el enlace hasta que termine la cuenta regresiva */
+        }
+        .link-container a {
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f8df4f; /* Dorado brillante */
+            background-color: #000000; /* Fondo negro */
+            padding: 15px 30px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .link-container a:hover {
+            background-color: #d8bf34; /* Dorado brillante */
+            color: #000000; /* Cambiar color del texto a negro */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        /* Efecto de animación */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Efecto de partículas */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ad971b; /* Dorado */
+            animation: particleAnimation 2s infinite ease-in-out;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+                top: 50%;
+                left: 50%;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+                top: calc(50% + 200px);
+                left: calc(50% + 200px);
+            }
+        }
+
+        .countdown {
+            font-size: 2em;
+            color: #ffe23f;
+            margin-top: 30px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- Mensaje de Año Nuevo -->
+        <div class="message">
+            ¡Feliz Año Nuevo, My Love! <br>
+            <br>Te amo mucho. ♡♡
+        </div>
+
+        <!-- Cuadrado con enlace -->
+        <div class="link-container">
+            <a href="https://tukitop.github.io/MiAmor/" target="_blank">I Love You My Love♥</a>
+        </div>
+
+        <!-- Cuenta regresiva -->
+        <div class="countdown" id="countdown">Cargando...</div>
+    </div>
+
+    <!-- Partículas de Año Nuevo -->
+    <div class="particle" style="top: 10%; left: 20%;"></div>
+    <div class="particle" style="top: 30%; left: 70%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="top: 50%; left: 10%; animation-delay: 1s;"></div>
+    <div class="particle" style="top: 80%; left: 80%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="top: 40%; left: 50%; animation-delay: 2s;"></div>
+
+    <script>
+        // Cuenta regresiva hasta la medianoche (12:00 AM)
+        function startCountdown() {
+            const countdownElement = document.getElementById("countdown");
+
+            const targetDate = new Date();
+            targetDate.setHours(24, 0, 0, 0); // Establece la fecha y hora para la medianoche (00:00 AM)
+
+            const interval = setInterval(function() {
+                const currentDate = new Date();
+                const timeLeft = targetDate - currentDate;
+
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+
+                // Cuando el contador llegue a 0, muestra el mensaje y el enlace
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    countdownElement.style.display = "none"; // Oculta el contador
+                    document.querySelector(".message").style.display = "block"; // Muestra el mensaje
+                    document.querySelector(".link-container").style.display = "block"; // Muestra el enlace
+                }
+            }, 1000);
+        }
+
+        // Inicia la cuenta regresiva cuando la página cargue
+        window.onload = function() {
+            startCountdown();
+        };
+    </script>
+</body>
+</html>
